@@ -1,6 +1,6 @@
-# movie_finder
+# Movie Finder
 
-A new Flutter project.
+A new Flutter movie finder app project.
 
 ## Getting Started
 
