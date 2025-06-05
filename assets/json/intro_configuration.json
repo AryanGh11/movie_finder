@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "key": "joker",
+    "text": "Explore and find your favorite movies and characters ...",
+    "posterPath": "https://preview.redd.it/textless-joker-folie-%C3%A0-deux-official-posters-v0-q5ft0zmn24sc1.jpg?width=640&crop=smart&auto=webp&s=11395cb2da0d3d84a47f502909456656e0473926"
+  },
+  {
+    "id": 2,
+    "key": "batman-dark-knight",
+    "text": "Find your empire ...",
+    "posterPath": "https://i.pinimg.com/736x/00/9a/7f/009a7f550b5b3f5337f116d284cc35b7.jpg"
+  },
+  {
+    "id": 3,
+    "key": "the-flash",
+    "text": "Start now",
+    "posterPath": "https://i.redd.it/jaee8f7ydhha1.jpg"
+  }
+]

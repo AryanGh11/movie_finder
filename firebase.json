@@ -1,0 +1,30 @@
+{
+  "flutter": {
+    "platforms": {
+      "android": {
+        "default": {
+          "projectId": "movie-finder-devbyaryan",
+          "appId": "1:1088035788364:android:c5373a15ddf1315c22c6e9",
+          "fileOutput": "android/app/google-services.json"
+        }
+      },
+      "ios": {
+        "default": {
+          "projectId": "movie-finder-devbyaryan",
+          "appId": "1:1088035788364:ios:e2f89ad548ee469422c6e9",
+          "uploadDebugSymbols": false,
+          "fileOutput": "ios/Runner/GoogleService-Info.plist"
+        }
+      },
+      "dart": {
+        "lib/firebase_options.dart": {
+          "projectId": "movie-finder-devbyaryan",
+          "configurations": {
+            "android": "1:1088035788364:android:c5373a15ddf1315c22c6e9",
+            "ios": "1:1088035788364:ios:e2f89ad548ee469422c6e9"
+          }
+        }
+      }
+    }
+  }
+}
