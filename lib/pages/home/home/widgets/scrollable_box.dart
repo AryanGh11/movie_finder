@@ -52,16 +52,11 @@ class HomePageScrollableBox extends StatelessWidget {
                       scrollDirection: Axis.horizontal,
                       child: Row(
                         children: List.generate(items.length, (index) {
-                          return Padding(
-                            padding: EdgeInsets.only(
-                              right: index < items.length - 1 ? 15 : 0,
+                          return ConstrainedBox(
+                            constraints: BoxConstraints(
+                              maxWidth: constraints.maxWidth * 0.65,
                             ),
-                            child: ConstrainedBox(
-                              constraints: BoxConstraints(
-                                maxWidth: constraints.maxWidth * 0.65,
-                              ),
-                              child: itemBuilder(items[index]),
-                            ),
+                            child: itemBuilder(items[index]),
                           );
                         }),
                       ),
