@@ -53,6 +53,7 @@ class _HomePageCarouselState extends State<HomePageCarousel> {
                     child: CustomCachedImage(
                       imageUrl: backdropPath,
                       fit: BoxFit.cover,
+                      fullScreenOnTap: false,
                     ),
                   );
                 },

@@ -61,6 +61,7 @@ class _HorizontalMovieCardState extends State<HorizontalMovieCard> {
                     imageUrl: _backdropPath ?? "",
                     fit: BoxFit.cover,
                     width: double.infinity,
+                    fullScreenOnTap: false,
                   ),
                 ),
               ),

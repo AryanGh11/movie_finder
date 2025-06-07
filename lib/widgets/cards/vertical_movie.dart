@@ -44,6 +44,7 @@ class _VerticalMovieCardState extends State<VerticalMovieCard> {
                         imageUrl: widget.movie.posterPath,
                         fit: BoxFit.cover,
                         width: double.infinity,
+                        fullScreenOnTap: false,
                       ),
                     ),
                   ),
@@ -53,7 +54,8 @@ class _VerticalMovieCardState extends State<VerticalMovieCard> {
                     child: Row(
                       children: [
                         IconButton(
-                          onPressed: () => localUser.toggleFavorite(widget.movie),
+                          onPressed: () =>
+                              localUser.toggleFavorite(widget.movie),
                           icon: Icon(
                             localUser.isFavorite(widget.movie.id)
                                 ? Icons.favorite

@@ -102,6 +102,7 @@ class _IntroScreenState extends State<IntroScreen> {
                         CustomCachedImage(
                           imageUrl: intro.posterPath,
                           fit: BoxFit.cover,
+                          fullScreenOnTap: false,
                         ),
                         Container(color: Colors.black26),
                         Positioned(
