@@ -8,3 +8,4 @@ export 'app_title_icon.dart';
 export 'global_padding.dart';
 export 'expandable_text.dart';
 export 'vertical_cards_list.dart';
+export 'full_screen_image_viewer.dart';
