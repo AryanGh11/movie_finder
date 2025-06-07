@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:movie_finder/utils/index.dart';
 import 'package:movie_finder/widgets/index.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:movie_finder/utils/error_handler.dart';
 
 class ProfilePageEditDisplayNameDialog extends StatefulWidget {
   final User fUser;
@@ -27,7 +27,8 @@ class _ProfilePageEditDisplayNameDialogState
   @override
   void initState() {
     super.initState();
-    if (_displayNameController.text == widget.fUser.displayName) {
+    if (_displayNameController.text == widget.fUser.displayName ||
+        _displayNameController.text.isEmpty) {
       setState(() {
         _isButtonDisabled = true;
       });

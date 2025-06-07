@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:movie_finder/models/index.dart';
 import 'package:movie_finder/widgets/index.dart';
-import 'package:movie_finder/providers/local_user.dart';
-import 'package:movie_finder/pages/home/widgets/index.dart';
+import 'package:movie_finder/providers/index.dart';
 
 class FavoritesPage extends StatefulWidget {
   const FavoritesPage({super.key});
@@ -29,21 +28,6 @@ class _FavoritesPageState extends State<FavoritesPage> {
 
   @override
   Widget build(BuildContext context) {
-    return HomePagePadding(
-      child: CustomScrollView(
-        slivers: [
-          const SliverPadding(padding: EdgeInsets.symmetric(horizontal: 20)),
-          SliverGrid(
-            delegate: SliverChildBuilderDelegate((context, index) {
-              return VerticalMovieCard(movie: _favoriteMovies[index]);
-            }, childCount: _favoriteMovies.length),
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
-              childAspectRatio: 0.65,
-            ),
-          ),
-        ],
-      ),
-    );
+    return VerticalCardsList(movies: _favoriteMovies);
   }
 }

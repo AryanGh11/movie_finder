@@ -1,1 +1,1 @@
-export 'padding.dart';
+export '../../../widgets/global_padding.dart';

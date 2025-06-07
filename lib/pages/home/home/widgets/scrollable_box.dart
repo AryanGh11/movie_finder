@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movie_finder/utils/routes.dart';
 import 'package:movie_finder/widgets/index.dart';
 import 'package:movie_finder/models/hive/index.dart';
 
@@ -32,28 +33,42 @@ class HomePageScrollableBox extends StatelessWidget {
               ),
               CustomElevatedButton(
                 text: "More",
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(
+                    context,
+                    genericMoviesListRoute,
+                    arguments: {"title": title, "movies": items},
+                  );
+                },
                 variant: CustomElevatedButtonVariants.text,
                 color: Theme.of(context).colorScheme.primary,
               ),
             ],
           ),
-          SizedBox(
-            height: 200,
-            child: items.isNotEmpty
-                ? ListView.separated(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: items.length,
-                    separatorBuilder: (_, __) => const SizedBox(width: 15),
-                    itemBuilder: (context, index) {
-                      return SizedBox(
-                        width: MediaQuery.of(context).size.width * 0.65,
-                        child: itemBuilder(items[index]),
-                      );
-                    },
-                  )
-                : const Center(child: CustomCircularProgressIndicator()),
-          ),
+          items.isNotEmpty
+              ? LayoutBuilder(
+                  builder: (context, constraints) {
+                    return SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        children: List.generate(items.length, (index) {
+                          return Padding(
+                            padding: EdgeInsets.only(
+                              right: index < items.length - 1 ? 15 : 0,
+                            ),
+                            child: ConstrainedBox(
+                              constraints: BoxConstraints(
+                                maxWidth: constraints.maxWidth * 0.65,
+                              ),
+                              child: itemBuilder(items[index]),
+                            ),
+                          );
+                        }),
+                      ),
+                    );
+                  },
+                )
+              : const Center(child: CustomCircularProgressIndicator()),
         ],
       ),
     );

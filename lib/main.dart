@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:movie_finder/utils/index.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:movie_finder/utils/routes.dart';
 import 'package:movie_finder/models/index.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:movie_finder/providers/index.dart';
 import 'package:movie_finder/firebase_options.dart';
 import 'package:movie_finder/screens/home/index.dart';
-import 'package:movie_finder/providers/local_user.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

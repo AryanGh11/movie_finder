@@ -21,7 +21,7 @@ class HomeScreenBottomNavigationBar extends StatelessWidget {
           removeBottom: true,
           child: Container(
             padding: EdgeInsets.all(10),
-            color: Theme.of(context).colorScheme.surface,
+            color: Theme.of(context).colorScheme.secondary,
             child: Theme(
               data: Theme.of(context).copyWith(
                 splashColor: Colors.transparent,
@@ -29,6 +29,7 @@ class HomeScreenBottomNavigationBar extends StatelessWidget {
                 hoverColor: Colors.transparent,
               ),
               child: BottomNavigationBar(
+                backgroundColor: Theme.of(context).colorScheme.secondary,
                 type: BottomNavigationBarType.fixed,
                 currentIndex: currentIndex,
                 onTap: onNavigationTap,

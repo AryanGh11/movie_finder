@@ -41,7 +41,7 @@ class HomePageContent extends StatelessWidget {
             ],
           )
         : ListView(
-            padding: const EdgeInsets.only(bottom: 80),
+            padding: const EdgeInsets.only(bottom: 120),
             children: [
               HomePageCarousel(items: upcomingMovies),
               const SizedBox(height: 20),
@@ -50,16 +50,19 @@ class HomePageContent extends StatelessWidget {
                 items: popularMovies,
                 itemBuilder: (movie) => HorizontalMovieCard(movie: movie),
               ),
+              const SizedBox(height: 20),
               HomePageScrollableBox(
                 title: "Now Playing",
                 items: nowPlayingMovies,
                 itemBuilder: (movie) => HorizontalMovieCard(movie: movie),
               ),
+              const SizedBox(height: 20),
               HomePageScrollableBox(
                 title: "Top Rated",
                 items: topRatedMovies,
                 itemBuilder: (movie) => HorizontalMovieCard(movie: movie),
               ),
+              const SizedBox(height: 20),
               HomePageScrollableBox(
                 title: "Upcoming",
                 items: upcomingMovies,

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:movie_finder/utils/routes.dart';
+import 'package:movie_finder/utils/index.dart';
 import 'package:movie_finder/widgets/index.dart';
-import 'package:movie_finder/utils/error_handler.dart';
 import 'package:movie_finder/services/auth_service/index.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 

@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:movie_finder/utils/routes.dart';
+import 'package:movie_finder/utils/index.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:movie_finder/screens/home/enums.dart';
-import 'package:movie_finder/services/auth_service/index.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class HomeScreenProfilePopupMenu extends StatelessWidget {
@@ -28,11 +27,7 @@ class HomeScreenProfilePopupMenu extends StatelessWidget {
       onSelected: (value) async {
         switch (value) {
           case ProfileMenuAction.logout:
-            await AuthService.signOut();
-            Navigator.of(
-              // ignore: use_build_context_synchronously
-              context,
-            ).pushNamedAndRemoveUntil(introRoute, (route) => false);
+            LogoutUser.logout(context);
         }
       },
       itemBuilder: (context) {

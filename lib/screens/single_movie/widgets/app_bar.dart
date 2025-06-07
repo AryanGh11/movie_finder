@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:movie_finder/models/index.dart';
 import 'package:movie_finder/widgets/index.dart';
-import 'package:movie_finder/providers/local_user.dart';
+import 'package:movie_finder/providers/index.dart';
 
 class SingleMovieScreenAppBar extends StatelessWidget {
   final Movie movie;

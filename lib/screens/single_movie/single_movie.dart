@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:movie_finder/utils/index.dart';
 import 'package:movie_finder/models/index.dart';
 import 'package:movie_finder/widgets/index.dart';
-import 'package:movie_finder/utils/error_handler.dart';
-import 'package:movie_finder/providers/local_user.dart';
+import 'package:movie_finder/providers/index.dart';
 import 'package:movie_finder/services/tmdb_service.dart';
 import 'package:movie_finder/screens/single_movie/widgets/index.dart';
 

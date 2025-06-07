@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:movie_finder/utils/index.dart';
 import 'package:movie_finder/models/index.dart';
-import 'package:movie_finder/utils/routes.dart';
 import 'package:movie_finder/widgets/index.dart';
-import 'package:movie_finder/providers/local_user.dart';
+import 'package:movie_finder/providers/index.dart';
 
 class VerticalMovieCard extends StatefulWidget {
   final Movie movie;
