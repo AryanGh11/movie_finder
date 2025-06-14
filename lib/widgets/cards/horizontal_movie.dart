@@ -3,8 +3,8 @@ import 'package:provider/provider.dart';
 import 'package:movie_finder/utils/index.dart';
 import 'package:movie_finder/models/index.dart';
 import 'package:movie_finder/widgets/index.dart';
+import 'package:movie_finder/services/index.dart';
 import 'package:movie_finder/providers/index.dart';
-import 'package:movie_finder/services/tmdb_service.dart';
 import 'package:movie_finder/widgets/cards/movie_cards_with_menu_wrapper.dart';
 
 class HorizontalMovieCard extends StatefulWidget {

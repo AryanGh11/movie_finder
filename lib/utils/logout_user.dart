@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:movie_finder/utils/routes.dart';
-import 'package:movie_finder/services/auth_service/index.dart';
+import 'package:movie_finder/utils/index.dart';
+import 'package:movie_finder/services/index.dart';
 
 class LogoutUser {
   static Future<void> logout(BuildContext context) async {

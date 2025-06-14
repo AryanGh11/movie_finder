@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:movie_finder/services/index.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:movie_finder/services/auth_service/exceptions.dart';
 
 class AuthService {
   static Future<User> createWithEmail({

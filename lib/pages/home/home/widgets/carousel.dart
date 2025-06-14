@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:movie_finder/utils/index.dart';
+import 'package:movie_finder/models/index.dart';
 import 'package:movie_finder/widgets/index.dart';
-import 'package:movie_finder/models/hive/index.dart';
-import 'package:movie_finder/services/tmdb_service.dart';
+import 'package:movie_finder/services/index.dart';
 
 class HomePageCarousel extends StatefulWidget {
   final List<Movie> items;

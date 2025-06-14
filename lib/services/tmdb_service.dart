@@ -1,6 +1,6 @@
 import 'package:movie_finder/models/index.dart';
-import 'package:movie_finder/services/http_service.dart';
-import 'package:movie_finder/constants/tmdb_api_key.dart';
+import 'package:movie_finder/services/index.dart';
+import 'package:movie_finder/constants/index.dart';
 
 class TMDBService {
   static const String _apiKey = tmdbApiKey;

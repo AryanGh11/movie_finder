@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:movie_finder/services/auth_service/index.dart';
+import 'package:movie_finder/services/index.dart';
 
 class ErrorHandler {
   static void handle(Object error) {

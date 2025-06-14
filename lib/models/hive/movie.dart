@@ -1,6 +1,6 @@
 import 'package:hive/hive.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:movie_finder/services/telegram_service.dart';
+import 'package:movie_finder/services/index.dart';
 
 part 'movie.g.dart';
 

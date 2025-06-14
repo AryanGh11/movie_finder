@@ -1,5 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movie_finder/services/tmdb_service.dart';
+import 'package:movie_finder/services/index.dart';
 import 'package:movie_finder/screens/single_movie/bloc/index.dart';
 
 class SingleMovieBloc extends Bloc<SingleMovieEvent, SingleMovieState> {

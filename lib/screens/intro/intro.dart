@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:movie_finder/utils/index.dart';
 import 'package:movie_finder/models/index.dart';
 import 'package:movie_finder/widgets/index.dart';
+import 'package:movie_finder/services/index.dart';
 import 'package:flutter/services.dart' show rootBundle;
-import 'package:movie_finder/services/auth_service/index.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 

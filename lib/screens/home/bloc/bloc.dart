@@ -1,7 +1,7 @@
 import 'state.dart';
 import 'event.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movie_finder/services/tmdb_service.dart';
+import 'package:movie_finder/services/index.dart';
 
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
   HomeBloc() : super(HomeInitial()) {

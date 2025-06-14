@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:movie_finder/widgets/customs/index.dart';
+import 'package:movie_finder/widgets/index.dart';
 
 enum CustomElevatedButtonVariants { primary, outlined, text }
 

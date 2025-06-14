@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:movie_finder/pages/index.dart';
 import 'package:movie_finder/models/index.dart';
 import 'package:movie_finder/widgets/index.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:movie_finder/providers/index.dart';
-import 'package:movie_finder/pages/home/index.dart';
 
 class HomeScreenBody extends StatelessWidget {
   final User user;

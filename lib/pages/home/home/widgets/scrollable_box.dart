@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:movie_finder/utils/routes.dart';
+import 'package:movie_finder/utils/index.dart';
+import 'package:movie_finder/models/index.dart';
 import 'package:movie_finder/widgets/index.dart';
-import 'package:movie_finder/models/hive/index.dart';
 
 class HomePageScrollableBox extends StatelessWidget {
   final String title;
