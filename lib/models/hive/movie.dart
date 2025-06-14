@@ -1,6 +1,10 @@
 import 'package:hive/hive.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:movie_finder/services/telegram_service.dart';
 
 part 'movie.g.dart';
+
+enum GoogleLangs { persian, english }
 
 @HiveType(typeId: 0)
 class Movie {
@@ -227,4 +231,24 @@ class Movie {
   String? get tagline => _tagline;
 
   String? get imdbId => _imdbId;
+
+  Future<void> openInGoogle(GoogleLangs lang) async {
+    final String searchQuery = lang == GoogleLangs.persian
+        ? "دانلود فیلم $title بدون سانسور"
+        : "Download $title for free";
+    final Uri url = Uri.parse("https://www.google.com/search?q=$searchQuery");
+
+    if (await canLaunchUrl(url)) {
+      await launchUrl(url, mode: LaunchMode.externalApplication);
+    } else {
+      throw 'Could not launch Telegram';
+    }
+  }
+
+  void openInTelegramBot() async {
+    await TelegramService.sendMessage(
+      message: imdbId ?? title,
+      username: "DonyayeSerialBot",
+    );
+  }
 }

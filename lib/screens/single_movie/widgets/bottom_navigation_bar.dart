@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:movie_finder/models/index.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'package:movie_finder/widgets/index.dart';
-import 'package:movie_finder/services/telegram_service.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
-enum GoogleLangs { persian, english }
 
 class SingleMovieScreenBottomNavigationBar extends StatelessWidget {
   final Movie movie;
@@ -14,26 +10,6 @@ class SingleMovieScreenBottomNavigationBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    void openMovieInTelegramBot() async {
-      await TelegramService.sendMessage(
-        message: movie.imdbId ?? movie.title,
-        username: "DonyayeSerialBot",
-      );
-    }
-
-    Future<void> openMovieInGoogle(GoogleLangs lang) async {
-      final String searchQuery = lang == GoogleLangs.persian
-          ? "دانلود فیلم ${movie.title} بدون سانسور"
-          : "Download ${movie.title} for free";
-      final Uri url = Uri.parse("https://www.google.com/search?q=$searchQuery");
-
-      if (await canLaunchUrl(url)) {
-        await launchUrl(url, mode: LaunchMode.externalApplication);
-      } else {
-        throw 'Could not launch Telegram';
-      }
-    }
-
     void openSearchInGoogleDialog() {
       showDialog(
         context: context,
@@ -49,13 +25,13 @@ class SingleMovieScreenBottomNavigationBar extends StatelessWidget {
                   CustomElevatedButton(
                     text: "in Persian",
                     onPressed: () async =>
-                        await openMovieInGoogle(GoogleLangs.persian),
+                        await movie.openInGoogle(GoogleLangs.persian),
                     variant: CustomElevatedButtonVariants.outlined,
                   ),
                   CustomElevatedButton(
                     text: "in English",
                     onPressed: () async =>
-                        await openMovieInGoogle(GoogleLangs.english),
+                        await movie.openInGoogle(GoogleLangs.english),
                     variant: CustomElevatedButtonVariants.outlined,
                   ),
                 ],
@@ -81,7 +57,7 @@ class SingleMovieScreenBottomNavigationBar extends StatelessWidget {
           CustomElevatedButton(
             prefixIcon: FontAwesomeIcons.telegram,
             text: "Search in Telegram Bot",
-            onPressed: openMovieInTelegramBot,
+            onPressed: movie.openInTelegramBot,
           ),
         ],
       ),
