@@ -5,6 +5,7 @@ import 'package:movie_finder/models/index.dart';
 import 'package:movie_finder/widgets/index.dart';
 import 'package:movie_finder/providers/index.dart';
 import 'package:movie_finder/services/tmdb_service.dart';
+import 'package:movie_finder/widgets/cards/movie_cards_with_menu_wrapper.dart';
 
 class HorizontalMovieCard extends StatefulWidget {
   final Movie movie;
@@ -40,7 +41,8 @@ class _HorizontalMovieCardState extends State<HorizontalMovieCard> {
   Widget build(BuildContext context) {
     final localUser = Provider.of<LocalUserProvider>(context);
 
-    return Material(
+    return MovieCardsWithMenuWrapper(
+      movie: widget.movie,
       child: InkWell(
         borderRadius: BorderRadius.circular(16),
         onTap: () {
@@ -75,7 +77,8 @@ class _HorizontalMovieCardState extends State<HorizontalMovieCard> {
                     child: Row(
                       children: [
                         IconButton(
-                          onPressed: () => localUser.toggleFavorite(widget.movie),
+                          onPressed: () =>
+                              localUser.toggleFavorite(widget.movie),
                           icon: Icon(
                             localUser.isFavorite(widget.movie.id)
                                 ? Icons.favorite
