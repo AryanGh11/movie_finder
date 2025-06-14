@@ -1,6 +1,8 @@
 import 'package:hive/hive.dart';
 import 'package:flutter/material.dart';
+import 'package:movie_finder/utils/index.dart';
 import 'package:movie_finder/models/index.dart';
+import 'package:movie_finder/services/index.dart';
 
 class LocalUserProvider extends ChangeNotifier {
   final Box<LocalUser> _localUserBox = Hive.box<LocalUser>('localUserBox');
@@ -28,6 +30,14 @@ class LocalUserProvider extends ChangeNotifier {
     }
     _localUser.save();
     notifyListeners();
+  }
+
+  Future<void> logout(BuildContext context) async {
+    await AuthService.signOut();
+    Navigator.of(
+      // ignore: use_build_context_synchronously
+      context,
+    ).pushNamedAndRemoveUntil(introRoute, (route) => false);
   }
 
   bool isFavorite(int movieId) {

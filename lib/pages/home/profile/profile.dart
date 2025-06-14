@@ -83,7 +83,7 @@ class _ProfilePageState extends State<ProfilePage> {
               ProfilePageActionCard(
                 label: "Log out",
                 icon: Icons.logout,
-                onTap: () {},
+                onTap: () async => await widget.localUser.logout(context),
               ),
             ],
           ),

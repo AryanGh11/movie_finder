@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:movie_finder/utils/index.dart';
+import 'package:provider/provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:movie_finder/providers/index.dart';
 import 'package:movie_finder/screens/home/enums.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class HomeScreenProfilePopupMenu extends StatelessWidget {
   final User user;
+
   const HomeScreenProfilePopupMenu({super.key, required this.user});
 
   @override
   Widget build(BuildContext context) {
+    final localUser = Provider.of<LocalUserProvider>(context);
+
     return PopupMenuButton<ProfileMenuAction>(
       borderRadius: BorderRadius.circular(99999),
       position: PopupMenuPosition.under,
@@ -27,7 +31,7 @@ class HomeScreenProfilePopupMenu extends StatelessWidget {
       onSelected: (value) async {
         switch (value) {
           case ProfileMenuAction.logout:
-            LogoutUser.logout(context);
+            localUser.logout(context);
         }
       },
       itemBuilder: (context) {
