@@ -31,6 +31,16 @@ class _ProfilePageState extends State<ProfilePage> {
     );
   }
 
+  void _openInfoDialog() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) => ProfilePageInfoDialog(
+        fUser: widget.fUser,
+        onFUserUpdated: widget.onFUserUpdated,
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -78,7 +88,7 @@ class _ProfilePageState extends State<ProfilePage> {
               ProfilePageActionCard(
                 label: "User info",
                 icon: Icons.info,
-                onTap: () {},
+                onTap: _openInfoDialog,
               ),
               ProfilePageActionCard(
                 label: "Log out",
