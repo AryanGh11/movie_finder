@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movie_finder/widgets/index.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class HomeScreenDrawer extends StatelessWidget {
@@ -17,31 +18,34 @@ class HomeScreenDrawer extends StatelessWidget {
       child: ListView(
         padding: EdgeInsets.zero,
         children: [
-          DrawerHeader(
-            decoration: BoxDecoration(color: Theme.of(context).primaryColor),
-            child: Text(
-              user.displayName ?? "Unknown user",
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
+          Stack(
+            children: [
+              CustomCachedImage(
+                imageUrl: "",
+                width: double.infinity,
+                height: 200,
+                borderRadius: BorderRadius.zero,
               ),
-            ),
+              Positioned(
+                bottom: 10,
+                left: 10,
+                child: Text(
+                  user.displayName ?? "Unknown",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ],
           ),
           ListTile(
-            leading: Icon(Icons.home),
-            title: Text('Home'),
+            leading: Icon(Icons.movie),
+            title: Text('Movies'),
             onTap: () {
               Navigator.pop(context);
               onNavigationTap(0);
-            },
-          ),
-          ListTile(
-            leading: Icon(Icons.search),
-            title: Text('Search'),
-            onTap: () {
-              Navigator.pop(context);
-              onNavigationTap(1);
             },
           ),
           ListTile(

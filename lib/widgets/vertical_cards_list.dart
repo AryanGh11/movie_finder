@@ -23,7 +23,6 @@ class VerticalCardsList extends StatelessWidget {
 
     return CustomScrollView(
       slivers: [
-        const SliverPadding(padding: EdgeInsets.symmetric(horizontal: 20)),
         SliverGrid(
           delegate: SliverChildBuilderDelegate((context, index) {
             return VerticalMovieCard(movie: movies[index]);
@@ -35,6 +34,7 @@ class VerticalCardsList extends StatelessWidget {
             childAspectRatio: aspectRatio,
           ),
         ),
+        const SliverPadding(padding: EdgeInsets.only(bottom: 120)),
       ],
     );
   }
