@@ -11,7 +11,7 @@ class VerticalCardsList extends StatelessWidget {
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
     final horizontalPadding = 20.0;
-    final spacing = 10.0;
+    final spacing = 20.0;
     final totalHorizontalSpacing = (horizontalPadding * 2) + spacing;
 
     // Calculate width of each card (2 columns)
@@ -21,21 +21,23 @@ class VerticalCardsList extends StatelessWidget {
     final itemHeight = itemWidth * 1.6;
     final aspectRatio = itemWidth / itemHeight;
 
-    return CustomScrollView(
-      slivers: [
-        SliverGrid(
-          delegate: SliverChildBuilderDelegate((context, index) {
-            return VerticalMovieCard(movie: movies[index]);
-          }, childCount: movies.length),
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            crossAxisSpacing: spacing,
-            mainAxisSpacing: spacing,
-            childAspectRatio: aspectRatio,
-          ),
-        ),
-        const SliverPadding(padding: EdgeInsets.only(bottom: 120)),
-      ],
-    );
+    return movies.isNotEmpty
+        ? CustomScrollView(
+            slivers: [
+              SliverGrid(
+                delegate: SliverChildBuilderDelegate((context, index) {
+                  return VerticalMovieCard(movie: movies[index]);
+                }, childCount: movies.length),
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  crossAxisSpacing: spacing,
+                  mainAxisSpacing: spacing,
+                  childAspectRatio: aspectRatio,
+                ),
+              ),
+              const SliverPadding(padding: EdgeInsets.only(bottom: 120)),
+            ],
+          )
+        : Center(child: Text("Data not found"));
   }
 }

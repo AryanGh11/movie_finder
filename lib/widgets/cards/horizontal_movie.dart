@@ -53,7 +53,7 @@ class _HorizontalMovieCardState extends State<HorizontalMovieCard> {
           );
         },
         child: Padding(
-          padding: const EdgeInsets.all(10),
+          padding: const EdgeInsets.symmetric(vertical: 10),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

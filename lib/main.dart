@@ -3,7 +3,6 @@ import 'package:provider/provider.dart';
 import 'package:movie_finder/utils/index.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:movie_finder/models/index.dart';
-import 'package:movie_finder/screens/index.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:movie_finder/providers/index.dart';
@@ -69,7 +68,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       debugShowCheckedModeBanner: false,
-      home: const HomeScreen(),
+      initialRoute: homeRoute,
       routes: routes,
     );
   }

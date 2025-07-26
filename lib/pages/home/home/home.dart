@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:movie_finder/models/index.dart';
-import 'package:movie_finder/widgets/index.dart';
 import 'package:movie_finder/pages/home/home/widgets/index.dart';
 
 class HomePage extends StatefulWidget {
@@ -28,24 +27,13 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        CustomTextField(
-          controller: widget.searchController,
-          hintText: "Search for movies ...",
-        ),
-        const SizedBox(height: 20),
-        Expanded(
-          child: HomePageContent(
-            popularMovies: widget.popularMovies,
-            nowPlayingMovies: widget.nowPlayingMovies,
-            topRatedMovies: widget.topRatedMovies,
-            upcomingMovies: widget.upcomingMovies,
-            searchController: widget.searchController,
-            searchedMovies: widget.searchedMovies,
-          ),
-        ),
-      ],
+    return HomePageContent(
+      popularMovies: widget.popularMovies,
+      nowPlayingMovies: widget.nowPlayingMovies,
+      topRatedMovies: widget.topRatedMovies,
+      upcomingMovies: widget.upcomingMovies,
+      searchController: widget.searchController,
+      searchedMovies: widget.searchedMovies,
     );
   }
 }

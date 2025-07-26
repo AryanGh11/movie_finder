@@ -24,22 +24,7 @@ class HomePageContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return searchController.text.isNotEmpty
-        ? CustomScrollView(
-            slivers: [
-              const SliverPadding(
-                padding: EdgeInsets.symmetric(horizontal: 20),
-              ),
-              SliverGrid(
-                delegate: SliverChildBuilderDelegate((context, index) {
-                  return VerticalMovieCard(movie: searchedMovies[index]);
-                }, childCount: searchedMovies.length),
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  childAspectRatio: 0.65,
-                ),
-              ),
-            ],
-          )
+        ? VerticalCardsList(movies: searchedMovies)
         : ListView(
             padding: const EdgeInsets.only(bottom: 120),
             children: [

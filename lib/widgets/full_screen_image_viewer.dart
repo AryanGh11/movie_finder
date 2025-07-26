@@ -23,6 +23,7 @@ class FullScreenImageViewer extends StatelessWidget {
               imageUrl: imageUrl,
               fit: BoxFit.contain,
               borderRadius: BorderRadius.zero,
+              fullScreenOnTap: false,
             ),
           ),
         ),

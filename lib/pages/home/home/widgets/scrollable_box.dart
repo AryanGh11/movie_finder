@@ -51,6 +51,7 @@ class HomePageScrollableBox extends StatelessWidget {
                     return SingleChildScrollView(
                       scrollDirection: Axis.horizontal,
                       child: Row(
+                        spacing: 10,
                         children: List.generate(items.length, (index) {
                           return ConstrainedBox(
                             constraints: BoxConstraints(
@@ -63,7 +64,12 @@ class HomePageScrollableBox extends StatelessWidget {
                     );
                   },
                 )
-              : const Center(child: CustomCircularProgressIndicator()),
+              : const Center(
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(vertical: 90),
+                    child: CustomCircularProgressIndicator(),
+                  ),
+                ),
         ],
       ),
     );

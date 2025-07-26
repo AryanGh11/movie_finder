@@ -25,6 +25,7 @@ class HomeScreenDrawer extends StatelessWidget {
                 width: double.infinity,
                 height: 200,
                 borderRadius: BorderRadius.zero,
+                fullScreenOnTap: false,
               ),
               Positioned(
                 bottom: 10,
