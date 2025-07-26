@@ -14,14 +14,22 @@ class HomePageCarousel extends StatefulWidget {
 }
 
 class _HomePageCarouselState extends State<HomePageCarousel> {
+  final Map<int, String?> _backdropCache = {};
+
   Future<String?> _getBackdropPath(int movieId) async {
+    if (_backdropCache.containsKey(movieId)) {
+      return _backdropCache[movieId];
+    }
+
     try {
       final res = await TMDBService.getMovieImages(movieId);
       if (!mounted) return null;
+      _backdropCache[movieId] = res.backdropPath;
       return res.backdropPath;
     } catch (e) {
       if (mounted) ErrorHandler.handle(e);
     }
+
     return null;
   }
 
@@ -50,10 +58,80 @@ class _HomePageCarouselState extends State<HomePageCarousel> {
                         arguments: movie.id,
                       );
                     },
-                    child: CustomCachedImage(
-                      imageUrl: backdropPath,
-                      fit: BoxFit.cover,
-                      fullScreenOnTap: false,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(16),
+                      ),
+                      clipBehavior: Clip.hardEdge,
+                      child: Stack(
+                        children: [
+                          CustomCachedImage(
+                            imageUrl: backdropPath,
+                            fit: BoxFit.cover,
+                            fullScreenOnTap: false,
+                          ),
+                          Positioned.fill(
+                            child: Container(
+                              decoration: const BoxDecoration(
+                                gradient: LinearGradient(
+                                  begin: Alignment.centerLeft,
+                                  end: Alignment.centerRight,
+                                  colors: [Colors.black, Colors.transparent],
+                                  stops: [0.2, 1],
+                                ),
+                              ),
+                            ),
+                          ),
+                          Positioned(
+                            top: 20,
+                            bottom: 20,
+                            left: 20,
+                            right: 20,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              spacing: 12,
+                              children: [
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      '${movie.title} ${movie.releaseYear}',
+                                      style: const TextStyle(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                      overflow: TextOverflow.ellipsis,
+                                      maxLines: 1,
+                                    ),
+                                    Text(
+                                      movie.overview,
+                                      style: TextStyle(
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .onSurface
+                                            .withValues(alpha: 0.75),
+                                        fontSize: 12,
+                                      ),
+                                      overflow: TextOverflow.ellipsis,
+                                      maxLines: 4,
+                                    ),
+                                  ],
+                                ),
+                                ElevatedButton(
+                                  style: ButtonStyle(
+                                    backgroundColor: WidgetStatePropertyAll(
+                                      Colors.white,
+                                    ),
+                                  ),
+                                  onPressed: () {},
+                                  child: const Text("Watch Now"),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   );
                 },
