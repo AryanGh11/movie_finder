@@ -55,6 +55,7 @@ dependencies:
   url_launcher: ^6.3.1
   flutter_bloc: ^9.1.1
   bloc: ^9.0.0
+  flutter_svg: ^2.2.0
 
 dev_dependencies:
   flutter_test:
@@ -81,7 +82,7 @@ flutter:
   assets:
     - assets/images/default_poster.webp
     - assets/json/intro_configuration.json
-    - assets/icon/app_icon.png
+    - assets/icons/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

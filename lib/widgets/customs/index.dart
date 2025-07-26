@@ -1,3 +1,4 @@
+export 'icon.dart';
 export 'dialog.dart';
 export 'text_field.dart';
 export 'cached_image.dart';

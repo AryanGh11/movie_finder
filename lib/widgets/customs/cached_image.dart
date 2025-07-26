@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movie_finder/widgets/index.dart';
+import 'package:movie_finder/constants/index.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
 class CustomCachedImage extends StatelessWidget {
@@ -43,7 +44,7 @@ class CustomCachedImage extends StatelessWidget {
           placeholder: (context, url) =>
               const Center(child: CustomCircularProgressIndicator()),
           errorWidget: (context, url, error) => Image.asset(
-            'assets/images/default_poster.webp',
+            ImagesPaths.defaultPoster,
             fit: fit,
             width: width,
             height: height,
