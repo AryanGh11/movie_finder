@@ -124,7 +124,13 @@ class _HomePageCarouselState extends State<HomePageCarousel> {
                                       Colors.white,
                                     ),
                                   ),
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    Navigator.pushNamed(
+                                      context,
+                                      singleMovieRoute,
+                                      arguments: movie.id,
+                                    );
+                                  },
                                   child: const Text("Watch Now"),
                                 ),
                               ],

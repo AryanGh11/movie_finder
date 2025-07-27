@@ -45,9 +45,12 @@ class _GenericMoviesListScreenState extends State<GenericMoviesListScreen> {
           _appBarTitle,
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        scrolledUnderElevation: 0,
+        elevation: 0,
       ),
       body: _movies.isNotEmpty
-          ? VerticalCardsList(movies: _movies)
+          ? GlobalPadding(child: VerticalCardsList(movies: _movies))
           : ErrorView(),
     );
   }

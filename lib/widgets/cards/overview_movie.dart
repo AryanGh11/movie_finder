@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:movie_finder/utils/index.dart';
 import 'package:movie_finder/models/index.dart';
 import 'package:movie_finder/widgets/index.dart';
+import 'package:movie_finder/services/index.dart';
 import 'package:movie_finder/providers/index.dart';
 import 'package:movie_finder/widgets/cards/movie_wrapper.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -16,6 +18,26 @@ class OverviewMovieCard extends StatefulWidget {
 }
 
 class _OverviewMovieCardState extends State<OverviewMovieCard> {
+  String? _backdropPath;
+
+  @override
+  void initState() {
+    super.initState();
+    _getBackdropPath();
+  }
+
+  Future<void> _getBackdropPath() async {
+    try {
+      final res = await TMDBService.getMovieImages(widget.movie.id);
+      if (!mounted) return;
+      setState(() {
+        _backdropPath = res.backdropPath;
+      });
+    } catch (e) {
+      if (mounted) ErrorHandler.handle(e);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final localUser = Provider.of<LocalUserProvider>(context);
@@ -32,8 +54,8 @@ class _OverviewMovieCardState extends State<OverviewMovieCard> {
                 child: AspectRatio(
                   aspectRatio: 16 / 9,
                   child: CustomCachedImage(
-                    key: ValueKey(widget.movie.posterPath),
-                    imageUrl: widget.movie.posterPath,
+                    key: ValueKey(_backdropPath ?? ""),
+                    imageUrl: _backdropPath ?? "",
                     fit: BoxFit.cover,
                     width: 100,
                     fullScreenOnTap: false,
