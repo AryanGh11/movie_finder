@@ -30,25 +30,26 @@ class HomePageContent extends StatelessWidget {
             children: [
               HomePageCarousel(items: upcomingMovies),
               const SizedBox(height: 20),
-              HomePageScrollableBox(
+              HomePageHorizontalScrollableBox(
                 title: "Popular",
                 items: popularMovies,
-                itemBuilder: (movie) => HorizontalMovieCard(movie: movie),
+                itemBuilder: (movie) => VerticalMovieCard(movie: movie),
+                itemWidthRatio: 0.45,
               ),
               const SizedBox(height: 20),
-              HomePageScrollableBox(
+              HomePageHorizontalScrollableBox(
                 title: "Now Playing",
                 items: nowPlayingMovies,
                 itemBuilder: (movie) => HorizontalMovieCard(movie: movie),
               ),
               const SizedBox(height: 20),
-              HomePageScrollableBox(
+              HomePageVerticalScrollableBox(
                 title: "Top Rated",
                 items: topRatedMovies,
-                itemBuilder: (movie) => HorizontalMovieCard(movie: movie),
+                itemBuilder: (movie) => OverviewMovieCard(movie: movie),
               ),
               const SizedBox(height: 20),
-              HomePageScrollableBox(
+              HomePageHorizontalScrollableBox(
                 title: "Upcoming",
                 items: upcomingMovies,
                 itemBuilder: (movie) => HorizontalMovieCard(movie: movie),

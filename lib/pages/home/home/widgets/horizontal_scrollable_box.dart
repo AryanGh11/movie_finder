@@ -3,16 +3,18 @@ import 'package:movie_finder/utils/index.dart';
 import 'package:movie_finder/models/index.dart';
 import 'package:movie_finder/widgets/index.dart';
 
-class HomePageScrollableBox extends StatelessWidget {
+class HomePageHorizontalScrollableBox extends StatelessWidget {
   final String title;
   final List<Movie> items;
   final Widget Function(Movie movie) itemBuilder;
+  final double itemWidthRatio;
 
-  const HomePageScrollableBox({
+  const HomePageHorizontalScrollableBox({
     super.key,
     required this.title,
     required this.items,
     required this.itemBuilder,
+    this.itemWidthRatio = 0.65,
   });
 
   @override
@@ -51,11 +53,10 @@ class HomePageScrollableBox extends StatelessWidget {
                     return SingleChildScrollView(
                       scrollDirection: Axis.horizontal,
                       child: Row(
-                        spacing: 10,
                         children: List.generate(items.length, (index) {
                           return ConstrainedBox(
                             constraints: BoxConstraints(
-                              maxWidth: constraints.maxWidth * 0.65,
+                              maxWidth: constraints.maxWidth * itemWidthRatio,
                             ),
                             child: itemBuilder(items[index]),
                           );
