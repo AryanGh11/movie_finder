@@ -7,12 +7,14 @@ import 'package:movie_finder/screens/home/widgets/app_bar/profile.dart';
 class HomeScreenAppBar extends StatelessWidget implements PreferredSizeWidget {
   final User user;
   final bool isSearchTextFieldVisible;
+  final bool isHomePage;
   final void Function() toggleSearchTextFieldVisible;
 
   const HomeScreenAppBar({
     super.key,
     required this.user,
     required this.isSearchTextFieldVisible,
+    required this.isHomePage,
     required this.toggleSearchTextFieldVisible,
   });
 
@@ -24,16 +26,17 @@ class HomeScreenAppBar extends StatelessWidget implements PreferredSizeWidget {
       centerTitle: false,
       automaticallyImplyLeading: false,
       actions: [
-        IconButton(
-          icon: CustomIcon(path: IconsPaths.search),
-          style: ButtonStyle(
-            backgroundColor: isSearchTextFieldVisible
-                ? WidgetStatePropertyAll(Theme.of(context).focusColor)
-                : null,
+        if (isHomePage)
+          IconButton(
+            icon: CustomIcon(path: IconsPaths.search),
+            style: ButtonStyle(
+              backgroundColor: isSearchTextFieldVisible
+                  ? WidgetStatePropertyAll(Theme.of(context).focusColor)
+                  : null,
+            ),
+            onPressed: () => toggleSearchTextFieldVisible(),
+            tooltip: "Search for any movies ...",
           ),
-          onPressed: () => toggleSearchTextFieldVisible(),
-          tooltip: "Search for any movies ...",
-        ),
       ],
     );
   }

@@ -5,6 +5,7 @@ import 'package:movie_finder/models/index.dart';
 import 'package:movie_finder/screens/index.dart';
 import 'package:movie_finder/widgets/index.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:movie_finder/constants/index.dart';
 import 'package:movie_finder/screens/home/widgets/index.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -21,6 +22,7 @@ class _HomeScreenState extends State<HomeScreen> {
   int _currentIndex = 0;
   Timer? _debounce;
   String? prevQuery;
+  bool _isSearchTextFieldVisible = false;
 
   @override
   void initState() {
@@ -90,22 +92,45 @@ class _HomeScreenState extends State<HomeScreen> {
 
     if (_user != null) {
       return Scaffold(
-        appBar: HomeScreenAppBar(user: _user!),
+        appBar: HomeScreenAppBar(
+          user: _user!,
+          isSearchTextFieldVisible: _isSearchTextFieldVisible,
+          isHomePage: isHomePage,
+          toggleSearchTextFieldVisible: () => setState(() {
+            _isSearchTextFieldVisible = !_isSearchTextFieldVisible;
+          }),
+        ),
         drawer: HomeScreenDrawer(
           user: _user!,
           onNavigationTap: _onNavigationTap,
         ),
         body: Column(
-          spacing: isHomePage ? 20 : 0,
+          spacing: _isSearchTextFieldVisible ? 20 : 0,
           children: [
-            isHomePage
-                ? GlobalPadding(
-                    child: CustomTextField(
-                      controller: _searchController,
-                      hintText: "Search for movies ...",
-                    ),
-                  )
-                : SizedBox(),
+            if (isHomePage)
+              AnimatedSize(
+                duration: const Duration(milliseconds: 300),
+                curve: Curves.easeInOut,
+                child: GlobalPadding(
+                  child: _isSearchTextFieldVisible
+                      ? CustomTextField(
+                          controller: _searchController,
+                          hintText: "Search for movies ...",
+                          prefixIcon: Padding(
+                            padding: const EdgeInsets.only(left: 10),
+                            child: CustomIcon(
+                              path: IconsPaths.search,
+                              color: Theme.of(
+                                context,
+                              ).colorScheme.onSurface.withValues(alpha: 0.5),
+                              width: 20,
+                              height: 20,
+                            ),
+                          ),
+                        )
+                      : const SizedBox.shrink(),
+                ),
+              ),
             Expanded(
               child: BlocBuilder<HomeBloc, HomeState>(
                 builder: (context, state) {
