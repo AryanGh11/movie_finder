@@ -1,18 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:movie_finder/utils/index.dart';
 import 'package:movie_finder/models/index.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 enum PopupItems { openMovieInGoogle, openMovieInTelegramBot }
 
-class MovieCardsWithMenuWrapper extends StatelessWidget {
+class MovieCardWrapper extends StatelessWidget {
   final Widget child;
   final Movie movie;
 
-  const MovieCardsWithMenuWrapper({
-    super.key,
-    required this.child,
-    required this.movie,
-  });
+  const MovieCardWrapper({super.key, required this.child, required this.movie});
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +54,16 @@ class MovieCardsWithMenuWrapper extends StatelessWidget {
     }
 
     return Material(
-      child: GestureDetector(onLongPressStart: openMenu, child: child),
+      child: GestureDetector(
+        onLongPressStart: openMenu,
+        child: InkWell(
+          borderRadius: BorderRadius.circular(16),
+          onTap: () {
+            Navigator.pushNamed(context, singleMovieRoute, arguments: movie.id);
+          },
+          child: child,
+        ),
+      ),
     );
   }
 }

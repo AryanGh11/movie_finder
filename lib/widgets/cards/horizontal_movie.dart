@@ -5,7 +5,7 @@ import 'package:movie_finder/models/index.dart';
 import 'package:movie_finder/widgets/index.dart';
 import 'package:movie_finder/services/index.dart';
 import 'package:movie_finder/providers/index.dart';
-import 'package:movie_finder/widgets/cards/movie_cards_with_menu_wrapper.dart';
+import 'package:movie_finder/widgets/cards/movie_wrapper.dart';
 
 class HorizontalMovieCard extends StatefulWidget {
   final Movie movie;
@@ -41,86 +41,75 @@ class _HorizontalMovieCardState extends State<HorizontalMovieCard> {
   Widget build(BuildContext context) {
     final localUser = Provider.of<LocalUserProvider>(context);
 
-    return MovieCardsWithMenuWrapper(
+    return MovieCardWrapper(
       movie: widget.movie,
-      child: InkWell(
-        borderRadius: BorderRadius.circular(16),
-        onTap: () {
-          Navigator.pushNamed(
-            context,
-            singleMovieRoute,
-            arguments: widget.movie.id,
-          );
-        },
-        child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 10),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Stack(
-                children: [
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(12),
-                    child: AspectRatio(
-                      aspectRatio: 16 / 9,
-                      child: CustomCachedImage(
-                        imageUrl: _backdropPath ?? "",
-                        fit: BoxFit.cover,
-                        width: double.infinity,
-                        fullScreenOnTap: false,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 10),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Stack(
+              children: [
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(12),
+                  child: AspectRatio(
+                    aspectRatio: 16 / 9,
+                    child: CustomCachedImage(
+                      imageUrl: _backdropPath ?? "",
+                      fit: BoxFit.cover,
+                      width: double.infinity,
+                      fullScreenOnTap: false,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  top: 0,
+                  right: 0,
+                  child: Row(
+                    children: [
+                      IconButton(
+                        onPressed: () => localUser.toggleFavorite(widget.movie),
+                        icon: Icon(
+                          localUser.isFavorite(widget.movie.id)
+                              ? Icons.favorite
+                              : Icons.favorite_outline,
+                          color: Theme.of(context).colorScheme.primary,
+                        ),
                       ),
-                    ),
-                  ),
-                  Positioned(
-                    top: 0,
-                    right: 0,
-                    child: Row(
-                      children: [
-                        IconButton(
-                          onPressed: () =>
-                              localUser.toggleFavorite(widget.movie),
-                          icon: Icon(
-                            localUser.isFavorite(widget.movie.id)
-                                ? Icons.favorite
-                                : Icons.favorite_outline,
-                            color: Theme.of(context).colorScheme.primary,
-                          ),
+                      IconButton(
+                        onPressed: () =>
+                            localUser.toggleWatchLater(widget.movie),
+                        icon: Icon(
+                          localUser.isInWatchLater(widget.movie.id)
+                              ? Icons.bookmark
+                              : Icons.bookmark_outline,
+                          color: Theme.of(context).colorScheme.primary,
                         ),
-                        IconButton(
-                          onPressed: () =>
-                              localUser.toggleWatchLater(widget.movie),
-                          icon: Icon(
-                            localUser.isInWatchLater(widget.movie.id)
-                                ? Icons.bookmark
-                                : Icons.bookmark_outline,
-                            color: Theme.of(context).colorScheme.primary,
-                          ),
-                        ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
-                ],
-              ),
-              const SizedBox(height: 8),
-              Text(
-                widget.movie.title,
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-                style: const TextStyle(fontWeight: FontWeight.bold),
-              ),
-              Row(
-                children: [
-                  Icon(
-                    Icons.star,
-                    size: 16,
-                    color: Theme.of(context).colorScheme.primary,
-                  ),
-                  const SizedBox(width: 4),
-                  Text(widget.movie.voteAverage?.toString() ?? '-'),
-                ],
-              ),
-            ],
-          ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 8),
+            Text(
+              widget.movie.title,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: const TextStyle(fontWeight: FontWeight.bold),
+            ),
+            Row(
+              children: [
+                Icon(
+                  Icons.star,
+                  size: 16,
+                  color: Theme.of(context).colorScheme.primary,
+                ),
+                const SizedBox(width: 4),
+                Text(widget.movie.voteAverage?.toString() ?? '-'),
+              ],
+            ),
+          ],
         ),
       ),
     );
