@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movie_finder/utils/index.dart';
 import 'package:movie_finder/models/index.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 enum PopupItems { openMovieInGoogle, openMovieInTelegramBot }
 
@@ -14,7 +13,7 @@ class MovieCardWrapper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Future<void> openMenu(LongPressStartDetails details) async {
-      final selected = await showMenu<PopupItems>(
+      final selected = await showMenu<DownloadOptionsPopupValues>(
         context: context,
         position: RelativeRect.fromLTRB(
           details.globalPosition.dx,
@@ -22,33 +21,27 @@ class MovieCardWrapper extends StatelessWidget {
           details.globalPosition.dx,
           details.globalPosition.dy,
         ),
-        items: [
-          PopupMenuItem(
-            value: PopupItems.openMovieInGoogle,
-            child: Row(
-              spacing: 10,
-              children: [
-                Icon(FontAwesomeIcons.google, size: 16),
-                Text("Search in Google"),
-              ],
-            ),
-          ),
-          PopupMenuItem(
-            value: PopupItems.openMovieInTelegramBot,
-            child: Row(
-              spacing: 10,
-              children: [
-                Icon(FontAwesomeIcons.telegram, size: 16),
-                Text("Search in Telegram Bot"),
-              ],
-            ),
-          ),
-        ],
+        items: downloadOptions
+            .map(
+              (option) => PopupMenuItem(
+                value:
+                    option[DownloadOptionsKeys.value]
+                        as DownloadOptionsPopupValues,
+                child: Row(
+                  spacing: 10,
+                  children: [
+                    Icon(option[DownloadOptionsKeys.icon], size: 16),
+                    Text(option[DownloadOptionsKeys.title]),
+                  ],
+                ),
+              ),
+            )
+            .toList(),
       );
 
-      if (selected == PopupItems.openMovieInGoogle) {
-        movie.openInGoogle(GoogleLangs.persian);
-      } else if (selected == PopupItems.openMovieInTelegramBot) {
+      if (selected == DownloadOptionsPopupValues.neterplay) {
+        movie.openInNeterplay();
+      } else if (selected == DownloadOptionsPopupValues.telegramBot) {
         movie.openInTelegramBot();
       }
     }
@@ -61,7 +54,7 @@ class MovieCardWrapper extends StatelessWidget {
           onTap: () {
             Navigator.pushNamed(context, singleMovieRoute, arguments: movie.id);
           },
-          child: child,
+          child: Padding(padding: const EdgeInsets.all(10), child: child),
         ),
       ),
     );

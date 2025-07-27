@@ -11,14 +11,14 @@ class VerticalCardsList extends StatelessWidget {
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
     final horizontalPadding = 20.0;
-    final spacing = 20.0;
+    final spacing = 0.0;
     final totalHorizontalSpacing = (horizontalPadding * 2) + spacing;
 
     // Calculate width of each card (2 columns)
     final itemWidth = (screenWidth - totalHorizontalSpacing) / 2;
 
     // Define a fixed or responsive height (based on image or design)
-    final itemHeight = itemWidth * 1.6;
+    final itemHeight = itemWidth * 1.65;
     final aspectRatio = itemWidth / itemHeight;
 
     return movies.isNotEmpty
