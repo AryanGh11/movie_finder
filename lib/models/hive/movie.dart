@@ -232,16 +232,13 @@ class Movie {
 
   String? get imdbId => _imdbId;
 
-  Future<void> openInGoogle(GoogleLangs lang) async {
-    final String searchQuery = lang == GoogleLangs.persian
-        ? "دانلود فیلم $title بدون سانسور"
-        : "Download $title for free";
-    final Uri url = Uri.parse("https://www.google.com/search?q=$searchQuery");
+  Future<void> openInNeterplay() async {
+    final Uri url = Uri.parse("https://neterplay.com/movies?title=$title");
 
     if (await canLaunchUrl(url)) {
       await launchUrl(url, mode: LaunchMode.externalApplication);
     } else {
-      throw 'Could not launch Telegram';
+      throw 'Could not launch Browser';
     }
   }
 
