@@ -16,7 +16,7 @@ class SingleMovieScreenAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
-      expandedHeight: MediaQuery.of(context).size.height / 2,
+      expandedHeight: (MediaQuery.of(context).size.width * 4) / 3,
       pinned: true,
       backgroundColor: Colors.black,
       flexibleSpace: FlexibleSpaceBar(
