@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:movie_finder/widgets/index.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:movie_finder/providers/index.dart';
 
 class HomeScreenDrawer extends StatelessWidget {
   final User user;
@@ -53,7 +54,7 @@ class HomeScreenDrawer extends StatelessWidget {
             leading: Icon(Icons.logout),
             title: Text('Logout'),
             onTap: () async {
-              await FirebaseAuth.instance.signOut();
+              await LocalUserProvider().logout(context);
               // ignore: use_build_context_synchronously
               Navigator.pop(context);
             },

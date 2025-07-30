@@ -40,15 +40,20 @@ class HomeScreenBottomNavigationBar extends StatelessWidget {
                 unselectedFontSize: 12,
                 items: const [
                   BottomNavigationBarItem(
-                    activeIcon: Icon(Icons.home),
-                    icon: Icon(Icons.home_outlined),
-                    label: "Home",
+                    activeIcon: Icon(Icons.movie),
+                    icon: Icon(Icons.movie_outlined),
+                    label: "Movies",
                   ),
                   BottomNavigationBarItem(
-                    activeIcon: Icon(Icons.favorite),
-                    icon: Icon(Icons.favorite_outline),
-                    label: "Favorites",
+                    activeIcon: Icon(Icons.theater_comedy),
+                    icon: Icon(Icons.theater_comedy_outlined),
+                    label: "Cast",
                   ),
+                  // BottomNavigationBarItem(
+                  //   activeIcon: Icon(Icons.favorite),
+                  //   icon: Icon(Icons.favorite_outline),
+                  //   label: "Favorites",
+                  // ),
                   BottomNavigationBarItem(
                     activeIcon: Icon(Icons.bookmark),
                     icon: Icon(Icons.bookmark_outline),

@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+enum IMDBType { movie, cast }
+
 class IMDB extends StatelessWidget {
   final String? imdbId;
+  final IMDBType type;
 
-  const IMDB({super.key, required this.imdbId});
+  const IMDB({super.key, required this.imdbId, this.type = IMDBType.movie});
 
   @override
   Widget build(BuildContext context) {
-    final String imdbLink = 'https://www.imdb.com/title/$imdbId';
+    final String imdbLink =
+        'https://www.imdb.com/${type == IMDBType.movie ? "title" : "name"}/$imdbId';
 
     Future<void> openInBrowser() async {
       final Uri url = Uri.parse(imdbLink);

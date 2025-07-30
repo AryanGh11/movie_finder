@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_finder/screens/index.dart';
 
 const homeRoute = "/";
@@ -7,16 +6,13 @@ const introRoute = "/intro";
 const signInRoute = "/signIn";
 const signUpRoute = "/signUp";
 const singleMovieRoute = "/singleMovie";
-const genericMoviesListRoute = "/genericMoviesList";
+const singleCastRoute = "/singleCast";
 
 final Map<String, Widget Function(BuildContext)> routes = {
-  homeRoute: (_) => BlocProvider(
-    create: (_) => HomeBloc()..add(FetchMovies()),
-    child: const HomeScreen(),
-  ),
+  homeRoute: (_) => HomeScreen(),
   introRoute: (_) => IntroScreen(),
   signInRoute: (_) => SignInScreen(),
   signUpRoute: (_) => SignUpScreen(),
   singleMovieRoute: (_) => SingleMovieScreen(),
-  genericMoviesListRoute: (_) => GenericMoviesListScreen(),
+  singleCastRoute: (_) => SingleCastScreen(),
 };

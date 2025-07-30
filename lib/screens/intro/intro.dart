@@ -79,7 +79,7 @@ class _IntroScreenState extends State<IntroScreen> {
   }
 
   void onSignInWithEmailPressed() {
-    Navigator.of(context).pushNamed(signInRoute);
+    Navigator.pushNamed(context, signInRoute);
   }
 
   @override

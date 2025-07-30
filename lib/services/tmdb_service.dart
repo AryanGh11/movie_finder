@@ -6,6 +6,7 @@ class TMDBService {
   static const String _apiKey = tmdbApiKey;
   static const String _baseUrl = "https://api.themoviedb.org/3";
 
+  // Movies --------------------------------------------------
   static Future<List<Movie>> searchMovies(String query) async {
     final Uri url = Uri.parse(
       '$_baseUrl/search/movie?api_key=$_apiKey&query=$query',
@@ -89,7 +90,9 @@ class TMDBService {
   }
 
   static Future<Movie> getDetailedMovie(int movieId) async {
-    final Uri url = Uri.parse('$_baseUrl/movie/$movieId?api_key=$_apiKey');
+    final Uri url = Uri.parse(
+      '$_baseUrl/movie/$movieId?api_key=$_apiKey&append_to_response=credits',
+    );
 
     final dynamic response = await HTTPService.get(url);
 
@@ -105,6 +108,47 @@ class TMDBService {
     final dynamic response = await HTTPService.get(url);
 
     final MovieImage result = MovieImage.fromJson(response);
+
+    return result;
+  }
+
+  // Cast --------------------------------------------------
+  static Future<List<Cast>> searchCast(String query) async {
+    final Uri url = Uri.parse(
+      '$_baseUrl/search/person?api_key=$_apiKey&query=$query',
+    );
+
+    final List<dynamic> response = (await HTTPService.get(url))["results"];
+
+    final List<Cast> results = response
+        .map((json) => Cast.fromSummary(json))
+        .toList();
+
+    return results;
+  }
+
+  static Future<List<Cast>> getPopularCast({int? page = 1}) async {
+    final Uri url = Uri.parse(
+      '$_baseUrl/person/popular?api_key=$_apiKey&page=$page',
+    );
+
+    final List<dynamic> response = (await HTTPService.get(url))["results"];
+
+    final List<Cast> results = response
+        .map((json) => Cast.fromSummary(json))
+        .toList();
+
+    return results;
+  }
+
+  static Future<Cast> getDetailedCast(int castId) async {
+    final Uri url = Uri.parse(
+      '$_baseUrl/person/$castId?api_key=$_apiKey&append_to_response=credits',
+    );
+
+    final dynamic response = await HTTPService.get(url);
+
+    final Cast result = Cast.fromDetailed(response);
 
     return result;
   }

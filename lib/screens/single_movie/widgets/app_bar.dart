@@ -21,7 +21,7 @@ class SingleMovieScreenAppBar extends StatelessWidget {
       backgroundColor: Colors.black,
       flexibleSpace: FlexibleSpaceBar(
         background: CustomCachedImage(
-          imageUrl: movie.posterPath,
+          imageUrl: movie.posterPath ?? '',
           fit: BoxFit.cover,
           borderRadius: BorderRadius.zero,
         ),

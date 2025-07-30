@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:movie_finder/pages/index.dart';
-import 'package:movie_finder/models/index.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_finder/widgets/index.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:movie_finder/providers/index.dart';
@@ -11,12 +11,7 @@ class HomeScreenBody extends StatelessWidget {
   final void Function(User user) onUserUpdated;
   final PageController pageController;
   final void Function(int index) onPageChanged;
-  final TextEditingController searchController;
-  final List<Movie> popularMovies;
-  final List<Movie> nowPlayingMovies;
-  final List<Movie> topRatedMovies;
-  final List<Movie> upcomingMovies;
-  final List<Movie> searchedMovies;
+  final bool isSearchTextFieldVisible;
 
   const HomeScreenBody({
     super.key,
@@ -24,12 +19,7 @@ class HomeScreenBody extends StatelessWidget {
     required this.onUserUpdated,
     required this.pageController,
     required this.onPageChanged,
-    required this.searchController,
-    required this.popularMovies,
-    required this.nowPlayingMovies,
-    required this.topRatedMovies,
-    required this.upcomingMovies,
-    required this.searchedMovies,
+    required this.isSearchTextFieldVisible,
   });
 
   @override
@@ -41,17 +31,24 @@ class HomeScreenBody extends StatelessWidget {
         physics: const NeverScrollableScrollPhysics(),
         children: [
           KeyedSubtree(
-            key: ValueKey("home_page"),
-            child: HomePage(
-              popularMovies: popularMovies,
-              nowPlayingMovies: nowPlayingMovies,
-              topRatedMovies: topRatedMovies,
-              upcomingMovies: upcomingMovies,
-              searchController: searchController,
-              searchedMovies: searchedMovies,
+            key: ValueKey("movies_page"),
+            child: BlocProvider(
+              create: (_) => HomeScreenMoviesBloc()..add(FetchMovies()),
+              child: MoviePage(
+                isSearchTextFieldVisible: isSearchTextFieldVisible,
+              ),
             ),
           ),
-          KeyedSubtree(key: ValueKey("favorites_page"), child: FavoritesPage()),
+          // KeyedSubtree(key: ValueKey("favorites_page"), child: FavoritesPage()),
+          KeyedSubtree(
+            key: ValueKey("cast_page"),
+            child: BlocProvider(
+              create: (_) => HomeScreenCastBloc()..add(FetchCast()),
+              child: CastPage(
+                isSearchTextFieldVisible: isSearchTextFieldVisible,
+              ),
+            ),
+          ),
           KeyedSubtree(key: ValueKey("bookmarks_page"), child: BookmarksPage()),
           KeyedSubtree(
             key: ValueKey("profile_page"),

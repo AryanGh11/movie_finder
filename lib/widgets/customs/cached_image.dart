@@ -41,8 +41,6 @@ class CustomCachedImage extends StatelessWidget {
           fit: fit,
           width: width,
           height: height,
-          placeholder: (context, url) =>
-              const Center(child: CustomCircularProgressIndicator()),
           errorWidget: (context, url, error) => Image.asset(
             ImagesPaths.defaultPoster,
             fit: fit,
