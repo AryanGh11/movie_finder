@@ -11,5 +11,12 @@ class LocalUser extends HiveObject {
   @HiveField(1)
   List<Movie> watchLater;
 
-  LocalUser({required this.favorites, required this.watchLater});
+  @HiveField(2)
+  String appLang;
+
+  LocalUser({
+    required this.favorites,
+    required this.watchLater,
+    this.appLang = "en",
+  });
 }

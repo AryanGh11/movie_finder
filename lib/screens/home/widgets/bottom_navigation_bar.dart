@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movie_finder/l10n/index.dart';
 
 class HomeScreenBottomNavigationBar extends StatelessWidget {
   final int currentIndex;
@@ -38,16 +39,16 @@ class HomeScreenBottomNavigationBar extends StatelessWidget {
                 unselectedItemColor: Colors.grey[500],
                 selectedFontSize: 12,
                 unselectedFontSize: 12,
-                items: const [
+                items: [
                   BottomNavigationBarItem(
                     activeIcon: Icon(Icons.movie),
                     icon: Icon(Icons.movie_outlined),
-                    label: "Movies",
+                    label: AppLocalizations.of(context)!.movies,
                   ),
                   BottomNavigationBarItem(
                     activeIcon: Icon(Icons.theater_comedy),
                     icon: Icon(Icons.theater_comedy_outlined),
-                    label: "Cast",
+                    label: AppLocalizations.of(context)!.cast,
                   ),
                   // BottomNavigationBarItem(
                   //   activeIcon: Icon(Icons.favorite),
@@ -57,12 +58,12 @@ class HomeScreenBottomNavigationBar extends StatelessWidget {
                   BottomNavigationBarItem(
                     activeIcon: Icon(Icons.bookmark),
                     icon: Icon(Icons.bookmark_outline),
-                    label: "Bookmark",
+                    label: AppLocalizations.of(context)!.bookmark,
                   ),
                   BottomNavigationBarItem(
                     activeIcon: Icon(Icons.person),
                     icon: Icon(Icons.person_outline),
-                    label: "Profile",
+                    label: AppLocalizations.of(context)!.profile,
                   ),
                 ],
               ),

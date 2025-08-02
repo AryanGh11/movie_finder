@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movie_finder/l10n/index.dart';
 import 'package:movie_finder/widgets/index.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:movie_finder/constants/index.dart';
@@ -35,7 +36,7 @@ class HomeScreenAppBar extends StatelessWidget implements PreferredSizeWidget {
                   : null,
             ),
             onPressed: () => toggleSearchTextFieldVisible(),
-            tooltip: "Search for any movies ...",
+            tooltip: AppLocalizations.of(context)!.searchForMovies,
           ),
       ],
     );

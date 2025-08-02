@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movie_finder/l10n/index.dart';
 import 'package:movie_finder/models/index.dart';
 import 'package:movie_finder/widgets/index.dart';
 import 'package:movie_finder/pages/home/movies/widgets/index.dart';
@@ -40,26 +41,27 @@ class MoviePageContent extends StatelessWidget {
               MoviePageCarousel(items: upcomingMovies),
               const SizedBox(height: 20),
               MoviePageHorizontalScrollableBox(
-                title: "Popular",
+                title: AppLocalizations.of(context)!.popular,
                 items: popularMovies,
                 itemBuilder: (movie) => VerticalMovieCard(movie: movie),
                 itemWidthRatio: 0.45,
               ),
               const SizedBox(height: 20),
               MoviePageHorizontalScrollableBox(
-                title: "Now Playing",
+                title: AppLocalizations.of(context)!.nowPlaying,
                 items: nowPlayingMovies,
                 itemBuilder: (movie) => HorizontalMovieCard(movie: movie),
               ),
               const SizedBox(height: 20),
               MoviePageVerticalScrollableBox(
-                title: "Top Rated",
+                title: AppLocalizations.of(context)!.topRated,
                 items: topRatedMovies,
                 itemBuilder: (movie) => OverviewMovieCard(movie: movie),
+                height: MediaQuery.of(context).size.width,
               ),
               const SizedBox(height: 20),
               MoviePageHorizontalScrollableBox(
-                title: "Upcoming",
+                title: AppLocalizations.of(context)!.upcoming,
                 items: upcomingMovies,
                 itemBuilder: (movie) => HorizontalMovieCard(movie: movie),
               ),

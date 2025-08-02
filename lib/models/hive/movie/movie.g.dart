@@ -46,7 +46,7 @@ class MovieAdapter extends TypeAdapter<Movie> {
   @override
   void write(BinaryWriter writer, Movie obj) {
     writer
-      ..writeByte(22)
+      ..writeByte(23)
       ..writeByte(0)
       ..write(obj._id)
       ..writeByte(1)

@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movie_finder/l10n/index.dart';
 import 'package:movie_finder/models/index.dart';
 import 'package:movie_finder/widgets/index.dart';
 import 'package:movie_finder/constants/index.dart';
@@ -72,7 +73,7 @@ class _CastPageState extends State<CastPage> {
           child: widget.isSearchTextFieldVisible
               ? CustomTextField(
                   controller: _searchController,
-                  hintText: "Search for cast ...",
+                  hintText: AppLocalizations.of(context)!.searchForCast,
                   prefixIcon: Padding(
                     padding: const EdgeInsets.only(left: 10),
                     child: CustomIcon(

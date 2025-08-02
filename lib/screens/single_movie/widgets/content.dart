@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movie_finder/l10n/index.dart';
 import 'package:movie_finder/models/index.dart';
 import 'package:movie_finder/widgets/index.dart';
 import 'package:movie_finder/screens/single_movie/widgets/index.dart';
@@ -22,7 +23,11 @@ class SingleMovieScreenContent extends StatelessWidget {
               // Title
               Text(
                 movie.title,
-                style: TextStyle(fontWeight: FontWeight.w800, fontSize: 30, height: 1.2),
+                style: TextStyle(
+                  fontWeight: FontWeight.w800,
+                  fontSize: 30,
+                  height: 1.2,
+                ),
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
               ),
@@ -58,7 +63,7 @@ class SingleMovieScreenContent extends StatelessWidget {
                   ),
                   RatingStars(
                     value: movie.ratingVoteAverage ?? 0,
-                    onChanged: (value) {},
+                    disabled: true,
                   ),
                 ],
               ),
@@ -99,7 +104,11 @@ class SingleMovieScreenContent extends StatelessWidget {
                     // Cast Tab
                     movie.cast != null
                         ? SingleMovieScreenCast(cast: movie.cast!)
-                        : const Center(child: Text("No cast available")),
+                        : Center(
+                            child: Text(
+                              AppLocalizations.of(context)!.noMoviesAvailable,
+                            ),
+                          ),
                   ],
                 ),
               ),

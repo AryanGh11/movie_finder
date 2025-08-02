@@ -1,5 +1,6 @@
 import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
+import 'package:movie_finder/l10n/index.dart';
 import 'package:movie_finder/models/index.dart';
 import 'package:movie_finder/widgets/index.dart';
 import 'package:movie_finder/screens/single_cast/widgets/index.dart';
@@ -107,7 +108,11 @@ class SingleCastScreenContent extends StatelessWidget {
                     // Movie Tab
                     cast.movies != null
                         ? SingleCastScreenMovies(movies: cast.movies!)
-                        : const Center(child: Text("No cast available")),
+                        : Center(
+                            child: Text(
+                              AppLocalizations.of(context)!.noCastAvailable,
+                            ),
+                          ),
                   ],
                 ),
               ),

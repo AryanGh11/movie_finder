@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movie_finder/l10n/index.dart';
 import 'package:movie_finder/models/index.dart';
 import 'package:movie_finder/widgets/index.dart';
 
@@ -38,6 +39,6 @@ class VerticalCardsList extends StatelessWidget {
               const SliverPadding(padding: EdgeInsets.only(bottom: 120)),
             ],
           )
-        : Center(child: Text("Data not found"));
+        : Center(child: Text(AppLocalizations.of(context)!.dataNotFound));
   }
 }

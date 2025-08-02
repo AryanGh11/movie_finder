@@ -19,17 +19,20 @@ class LocalUserAdapter extends TypeAdapter<LocalUser> {
     return LocalUser(
       favorites: (fields[0] as List).cast<Movie>(),
       watchLater: (fields[1] as List).cast<Movie>(),
+      appLang: fields[2] as String,
     );
   }
 
   @override
   void write(BinaryWriter writer, LocalUser obj) {
     writer
-      ..writeByte(2)
+      ..writeByte(3)
       ..writeByte(0)
       ..write(obj.favorites)
       ..writeByte(1)
-      ..write(obj.watchLater);
+      ..write(obj.watchLater)
+      ..writeByte(2)
+      ..write(obj.appLang);
   }
 
   @override

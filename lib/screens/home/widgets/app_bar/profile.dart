@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movie_finder/l10n/index.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -31,11 +32,11 @@ class HomeScreenAppBarProfile extends StatelessWidget {
             spacing: 4,
             children: [
               Text(
-                'Hi, ${user.displayName ?? 'User'}',
+                '${AppLocalizations.of(context)!.hi}, ${user.displayName ?? 'User'}',
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
               ),
               Text(
-                "Let's watch a movie",
+                AppLocalizations.of(context)!.watchAMovie,
                 style: TextStyle(
                   color: Theme.of(
                     context,

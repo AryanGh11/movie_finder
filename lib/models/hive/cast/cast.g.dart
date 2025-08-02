@@ -8,7 +8,7 @@ part of 'cast.dart';
 
 class CastAdapter extends TypeAdapter<Cast> {
   @override
-  final int typeId = 0;
+  final int typeId = 2;
 
   @override
   Cast read(BinaryReader reader) {

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movie_finder/l10n/index.dart';
 import 'package:movie_finder/widgets/index.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:movie_finder/providers/index.dart';
@@ -81,17 +82,17 @@ class _ProfilePageState extends State<ProfilePage> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               ProfilePageActionCard(
-                label: "Edit",
+                label: AppLocalizations.of(context)!.edit,
                 icon: Icons.edit,
                 onTap: _openEditDisplayNameDialog,
               ),
               ProfilePageActionCard(
-                label: "User info",
+                label: AppLocalizations.of(context)!.userInfo,
                 icon: Icons.info,
                 onTap: _openInfoDialog,
               ),
               ProfilePageActionCard(
-                label: "Log out",
+                label: AppLocalizations.of(context)!.logOut,
                 icon: Icons.logout,
                 onTap: () async => await widget.localUser.logout(context),
               ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movie_finder/l10n/index.dart';
 import 'package:movie_finder/utils/index.dart';
 import 'package:movie_finder/widgets/index.dart';
 import 'package:movie_finder/services/index.dart';
@@ -78,7 +79,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Sign-Up")),
+      appBar: AppBar(title: Text(AppLocalizations.of(context)!.signUp)),
       body: Padding(
         padding: const EdgeInsets.only(
           top: 40,
@@ -110,19 +111,19 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   children: [
                     CustomTextField(
                       controller: _displayNameController,
-                      label: const Text("Name"),
+                      label:  Text(AppLocalizations.of(context)!.name),
                       hintText: "John Doe",
                       prefixIcon: Icon(FontAwesomeIcons.user),
                     ),
                     CustomTextField(
                       controller: _emailController,
-                      label: const Text("Email"),
+                      label:  Text(AppLocalizations.of(context)!.email),
                       hintText: "address@example.com",
                       prefixIcon: Icon(Icons.email_outlined),
                     ),
                     CustomTextField(
                       controller: _passwordController,
-                      label: const Text("Password"),
+                      label:  Text(AppLocalizations.of(context)!.password),
                       prefixIcon: Icon(Icons.lock_outline),
                       isPassword: true,
                     ),

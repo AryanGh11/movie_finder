@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movie_finder/l10n/index.dart';
 
 class InfiniteScrollableList<T> extends StatefulWidget {
   final List<T> items;
@@ -117,6 +118,6 @@ class _InfiniteScrollableListState<T> extends State<InfiniteScrollableList> {
               const SliverPadding(padding: EdgeInsets.only(bottom: 120)),
             ],
           )
-        : Center(child: Text("Data not found"));
+        : Center(child: Text(AppLocalizations.of(context)!.dataNotFound));
   }
 }

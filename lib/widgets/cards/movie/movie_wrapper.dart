@@ -21,7 +21,7 @@ class MovieCardWrapper extends StatelessWidget {
           details.globalPosition.dx,
           details.globalPosition.dy,
         ),
-        items: downloadOptions
+        items: DownloadOptions.getAll(context)
             .map(
               (option) => PopupMenuItem(
                 value:

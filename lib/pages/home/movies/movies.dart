@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:movie_finder/l10n/index.dart';
 import 'package:movie_finder/pages/index.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_finder/models/index.dart';
@@ -73,7 +74,7 @@ class _MoviePageState extends State<MoviePage> {
           child: widget.isSearchTextFieldVisible
               ? CustomTextField(
                   controller: _searchController,
-                  hintText: "Search for movies ...",
+                  hintText: AppLocalizations.of(context)!.searchForMovies,
                   prefixIcon: Padding(
                     padding: const EdgeInsets.only(left: 10),
                     child: CustomIcon(

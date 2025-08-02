@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:movie_finder/utils/index.dart';
 import 'package:movie_finder/models/index.dart';
 import 'package:movie_finder/services/index.dart';
+import 'package:flutter_phoenix/flutter_phoenix.dart';
 
 class LocalUserProvider extends ChangeNotifier {
   final Box<LocalUser> _localUserBox = Hive.box<LocalUser>('localUserBox');
@@ -11,6 +12,7 @@ class LocalUserProvider extends ChangeNotifier {
 
   List<Movie> get favorites => _localUser.favorites;
   List<Movie> get watchLater => _localUser.watchLater;
+  String get appLang => _localUser.appLang;
 
   void toggleFavorite(Movie movie) {
     if (isFavorite(movie.id)) {
@@ -30,6 +32,13 @@ class LocalUserProvider extends ChangeNotifier {
     }
     _localUser.save();
     notifyListeners();
+  }
+
+  void toggleLang(BuildContext context) {
+    _localUser.appLang = _localUser.appLang == "en" ? "fa" : "en";
+    _localUser.save();
+    notifyListeners();
+    Phoenix.rebirth(context);
   }
 
   Future<void> logout(BuildContext context) async {

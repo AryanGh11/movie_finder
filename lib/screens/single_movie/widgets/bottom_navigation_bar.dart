@@ -11,17 +11,15 @@ class SingleMovieScreenBottomNavigationBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Map<DownloadOptionsKeys, dynamic> neterplayDownloadOption =
-        downloadOptions.firstWhere(
-          (option) =>
-              option[DownloadOptionsKeys.value] ==
-              DownloadOptionsPopupValues.neterplay,
+        DownloadOptions.getOne(
+          context,
+          query: DownloadOptionsPopupValues.neterplay,
         );
 
     final Map<DownloadOptionsKeys, dynamic> telegramBotDownloadOption =
-        downloadOptions.firstWhere(
-          (option) =>
-              option[DownloadOptionsKeys.value] ==
-              DownloadOptionsPopupValues.telegramBot,
+        DownloadOptions.getOne(
+          context,
+          query: DownloadOptionsPopupValues.telegramBot,
         );
 
     return Padding(

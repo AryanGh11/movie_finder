@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movie_finder/l10n/index.dart';
 import 'package:movie_finder/utils/index.dart';
 import 'package:movie_finder/models/index.dart';
 import 'package:movie_finder/widgets/index.dart';
@@ -15,6 +16,8 @@ class MoviePageCarousel extends StatefulWidget {
 
 class _MoviePageCarouselState extends State<MoviePageCarousel> {
   final Map<int, String?> _backdropCache = {};
+
+  final int _itemsCount = 8;
 
   Future<String?> _getBackdropPath(int movieId) async {
     if (_backdropCache.containsKey(movieId)) {
@@ -37,7 +40,7 @@ class _MoviePageCarouselState extends State<MoviePageCarousel> {
   Widget build(BuildContext context) {
     return Carousel(
       items: widget.items.isNotEmpty
-          ? widget.items.sublist(0, 4).map((movie) {
+          ? widget.items.sublist(0, _itemsCount).map((movie) {
               return FutureBuilder<String?>(
                 future: _getBackdropPath(movie.id),
                 builder: (context, snapshot) {
@@ -131,7 +134,9 @@ class _MoviePageCarouselState extends State<MoviePageCarousel> {
                                       arguments: movie.id,
                                     );
                                   },
-                                  child: const Text("Watch Now"),
+                                  child: Text(
+                                    AppLocalizations.of(context)!.watchNow,
+                                  ),
                                 ),
                               ],
                             ),

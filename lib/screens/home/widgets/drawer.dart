@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movie_finder/l10n/index.dart';
 import 'package:movie_finder/widgets/index.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:movie_finder/providers/index.dart';
@@ -15,6 +16,21 @@ class HomeScreenDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    void navigateToMoviesPage() {
+      Navigator.pop(context);
+      onNavigationTap(0);
+    }
+
+    void logOut() async {
+      await LocalUserProvider().logout(context);
+      // ignore: use_build_context_synchronously
+      Navigator.pop(context);
+    }
+
+    void switchLang() {
+      LocalUserProvider().toggleLang(context);
+    }
+
     return Drawer(
       child: ListView(
         padding: EdgeInsets.zero,
@@ -31,33 +47,34 @@ class HomeScreenDrawer extends StatelessWidget {
               Positioned(
                 bottom: 10,
                 left: 10,
-                child: Text(
-                  user.displayName ?? "Unknown",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
-                  ),
+                child: Row(
+                  children: [
+                    Text(
+                      user.displayName ?? "Unknown",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    IconButton(
+                      onPressed: switchLang,
+                      icon: Icon(Icons.language),
+                    ),
+                  ],
                 ),
               ),
             ],
           ),
           ListTile(
             leading: Icon(Icons.movie),
-            title: Text('Movies'),
-            onTap: () {
-              Navigator.pop(context);
-              onNavigationTap(0);
-            },
+            title: Text(AppLocalizations.of(context)!.movies),
+            onTap: navigateToMoviesPage,
           ),
           ListTile(
             leading: Icon(Icons.logout),
-            title: Text('Logout'),
-            onTap: () async {
-              await LocalUserProvider().logout(context);
-              // ignore: use_build_context_synchronously
-              Navigator.pop(context);
-            },
+            title: Text(AppLocalizations.of(context)!.logOut),
+            onTap: logOut,
           ),
         ],
       ),

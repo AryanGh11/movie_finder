@@ -3,7 +3,7 @@ import 'package:movie_finder/models/index.dart';
 
 part 'cast.g.dart';
 
-@HiveType(typeId: 0)
+@HiveType(typeId: 2)
 class Cast {
   // Summary
   @HiveField(0)

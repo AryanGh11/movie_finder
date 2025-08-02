@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movie_finder/l10n/index.dart';
 import 'package:movie_finder/models/index.dart';
 import 'package:movie_finder/widgets/index.dart';
 
@@ -36,7 +37,7 @@ class MoviePageVerticalScrollableBox extends StatelessWidget {
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
               ),
               CustomElevatedButton(
-                text: "More",
+                text: AppLocalizations.of(context)!.more,
                 // todo
                 onPressed: () {},
                 variant: CustomElevatedButtonVariants.text,

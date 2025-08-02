@@ -2,9 +2,15 @@ import 'package:flutter/material.dart';
 
 class RatingStars extends StatefulWidget {
   final double value;
-  final ValueChanged<double> onChanged;
+  final void Function(double)? onChanged;
+  final bool disabled;
 
-  const RatingStars({super.key, required this.value, required this.onChanged});
+  const RatingStars({
+    super.key,
+    required this.value,
+    this.onChanged,
+    this.disabled = false,
+  });
 
   @override
   State<RatingStars> createState() => _RatingStarsState();
@@ -20,10 +26,13 @@ class _RatingStarsState extends State<RatingStars> {
   }
 
   void _updateRating(double newRating) {
+    if (widget.disabled) return;
     setState(() {
       currentRating = newRating;
     });
-    widget.onChanged(currentRating);
+    if (widget.onChanged != null) {
+      widget.onChanged!(currentRating);
+    }
   }
 
   @override
